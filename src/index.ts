@@ -36,8 +36,6 @@ const genesisBlock: Block = new Block(0, "2020202002", "", "Hello", 123456);
 
 let blockChain: Block[] = [genesisBlock];
 
-console.log(blockChain);
-
 const getBlockchain = (): Block[] => blockChain;
 
 const getLatestBlock = (): Block => blockChain[blockChain.length - 1];
@@ -50,6 +48,7 @@ const createNewBlock = (data: string): Block => {
     const newTimeStamp: number = getNewTimeStamp();
     const newHash: string = Block.calculateBlockHash(newIndex, previousBlock.hash, newTimeStamp, data);
     const newBlock: Block = new Block(newIndex, newHash, previousBlock.hash, data, newTimeStamp);
+    addBlock(newBlock);
     return newBlock;
 };
 
